@@ -1,0 +1,12 @@
+# Ignore log files
+logs/
+
+# Ignore screenshot files
+screenshots/
+
+# Ignore virtual environment
+venv/
+
+# Ignore Visual Studio Code Files
+.vscode/
+__pycache__/
