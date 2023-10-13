@@ -23,6 +23,7 @@ This software is intended for educational purposes. The author is not responsibl
 8. Encrypt
 9. Decrypt
 10. Uninstall
+11. Record Clipboard Paste
 
 ## Installation
 1. Clone the repository
