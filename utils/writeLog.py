@@ -23,7 +23,18 @@ load_dotenv()
 # 2. path: The path of the log file.
 # It will return nothing.
 
-def writeLog(log, path=os.getenv("KEY_LOG_FILE")):
+def writeLog(log, path=os.getenv("KEY_LOG_FILE")) -> None:
+    
+    """
+    This function will write the log to the log file.
+    
+    It will take two parameters:
+    1. log: The log to be written.
+    2. path: The path of the log file.
+    
+    It will return nothing.
+    """
+    
     try:
         if not os.path.exists(path):
             dirName = os.path.dirname(path)

